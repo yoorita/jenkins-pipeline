@@ -7,10 +7,9 @@ pipeline {
         stage('Install Apache2') {
             steps {
                 sh '''
-                    sudo su
-                    apk update
-                    apk add apache2
-                    rc-service apache2 start
+                    sudo apk update
+                    sudo apk add apache2
+                    sudo rc-service apache2 start
                 '''
             }
         }
