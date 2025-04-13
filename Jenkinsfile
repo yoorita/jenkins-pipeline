@@ -7,7 +7,7 @@ pipeline {
         stage('Hello') {
             steps {
                 echo 'Hello World'
-                sh 'apk update'
+                sh 'sudo apk update'
             }
         }
     }
