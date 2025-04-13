@@ -9,7 +9,7 @@ pipeline {
                 sh '''
                     sudo apk update
                     sudo apk add apache2
-                    sudo httpd -D SERVER_NAME=localhost -D FOREGROUND & sleep 5
+                    sudo rc-service apache2 start
                 '''
             }
         }
@@ -34,7 +34,7 @@ pipeline {
     post {
         always {
             echo "Stopping Apache2..."
-            sh 'sudo httpd -k stop'
+            sh 'sudo rc-service apache2 stop'
         }
     }
 }
