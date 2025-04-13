@@ -1,5 +1,5 @@
 pipeline {
-    agent testnode
+    agent alpine
 
     stages {
         stage('Hello') {
