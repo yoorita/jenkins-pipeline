@@ -7,9 +7,9 @@ pipeline {
         stage('Install Apache2') {
             steps {
                 sh '''
-                    apk update
-                    apk add apache2
-                    httpd -D FOREGROUND & sleep 5
+                    sudo apk update
+                    sudo apk add apache2
+                    sudo httpd -D FOREGROUND & sleep 5
                 '''
             }
         }
@@ -28,6 +28,13 @@ pipeline {
                     }
                 }
             }
+        }
+    }
+
+    post {
+        always {
+            echo "Stopping Apache2..."
+            sh 'sudo httpd -k stop'
         }
     }
 }
