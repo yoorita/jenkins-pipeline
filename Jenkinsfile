@@ -1,5 +1,7 @@
 pipeline {
-    agent alpine
+    agent {
+        label 'alpine'
+    }
 
     stages {
         stage('Hello') {
