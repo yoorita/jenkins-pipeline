@@ -4,10 +4,10 @@ pipeline {
     }
 
     stages {
-        stage('Hello') {
+        stage('Update') {
             steps {
-                echo 'Hello World'
-                sh 'sudo -l'
+                echo 'Update packages'
+                sh 'sudo apk update'
             }
         }
     }
