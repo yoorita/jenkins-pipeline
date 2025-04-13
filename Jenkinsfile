@@ -9,7 +9,7 @@ pipeline {
                 sh '''
                     sudo apk update
                     sudo apk add apache2
-                    sudo httpd -D FOREGROUND & sleep 5
+                    sudo httpd -D SERVER_NAME=localhost FOREGROUND & sleep 5
                 '''
             }
         }
