@@ -14,7 +14,7 @@ pipeline {
                 '''
             }
         }
-        stage('Check Apache Logs for Errors') {
+        stage('Check Apache2 Logs for Errors') {
             steps {
                 script {
                     def errors = sh(script: '''
@@ -28,6 +28,12 @@ pipeline {
                         echo "No 4xx or 5xx errors found."
                     }
                 }
+            }
+        }
+
+        stage('Stop Apache2') {
+            steps {
+                sh 'sudo rc-service apache2 stop'
             }
         }
     }
