@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                     def errors = sh(script: '''
-                        sudo sh -c 'tail -n 100 /var/log/apache2/error.log | grep -E " 4[0-9]{2} | 5[0-9]{2}"'
+                        sudo sh -c 'tail -n 100 /var/log/apache2/error.log | grep -E " 4[0-9]{2} | 5[0-9]{2}" || true'
                     ''', returnStdout: true).trim()
 
                     if (errors) {
