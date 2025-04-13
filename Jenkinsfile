@@ -11,6 +11,14 @@ pipeline {
                     sudo apk add apache2
                     sudo sh -c 'echo "ServerName localhost" >> /etc/apache2/httpd.conf'
                     sudo rc-service apache2 start
+
+                    for i in $(seq 1 10); do
+                        if ss -ltn | grep -q ":80"; then
+                            echo "Apache is ready!"
+                            break
+                        fi
+                        sleep 1
+                    done
                 '''
             }
         }
