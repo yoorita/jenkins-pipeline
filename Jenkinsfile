@@ -1,5 +1,5 @@
 pipeline {
-    agent alpine
+    agent linux
 
     stages {
         stage('Hello') {
