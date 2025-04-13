@@ -9,6 +9,7 @@ pipeline {
                 sh '''
                     sudo apk update
                     sudo apk add apache2
+                    sudo sh -c 'echo "ServerName localhost" >> /etc/apache2/httpd.conf'
                     sudo rc-service apache2 start
                 '''
             }
@@ -17,7 +18,7 @@ pipeline {
             steps {
                 script {
                     def errors = sh(script: '''
-                        tail -n 100 /var/log/apache2/error.log | grep -E " 4[0-9]{2} | 5[0-9]{2}"
+                        sudo sh -c 'tail -n 100 /var/log/apache2/error.log | grep -E " 4[0-9]{2} | 5[0-9]{2}"'
                     ''', returnStdout: true).trim()
 
                     if (errors) {
